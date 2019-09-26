@@ -553,6 +553,19 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.evosuite</groupId>
+      <artifactId>evosuite-standalone-runtime</artifactId>
+      <version>1.0.6</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-nop</artifactId>
+      <version>1.7.25</version>
+      <scope>test</scope>
+    </dependency> 
+
   </dependencies>
 
   <distributionManagement>
@@ -569,6 +582,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+ <evosuiteVersion>1.0.6</evosuiteVersion>
     <!--
        This is also  used to generate download_xxx file name.
        To override this when generating the download page:
@@ -631,6 +645,18 @@
    <defaultGoal>clean verify apache-rat:check clirr:check checkstyle:check spotbugs:check javadoc:javadoc</defaultGoal>
    <pluginManagement>
       <plugins>
+
+  <plugin>
+      <groupId>org.evosuite.plugins</groupId>
+      <artifactId>evosuite-maven-plugin</artifactId>
+      <version>${evosuiteVersion}</version>
+      <executions><execution>
+         <goals> <goal> prepare </goal> </goals>
+         <phase> process-test-classes </phase>
+      </execution></executions>
+  </plugin>
+
+
         <plugin>
           <groupId>org.apache.rat</groupId>
           <artifactId>apache-rat-plugin</artifactId>
